@@ -10,7 +10,7 @@ require("rlist")
 require("rpart")
 require("parallel")
 
-ksemilla_azar  <- 102191   #cambiar por la primer semilla
+ksemilla_azar  <- 200177   #cambiar por la primer semilla
 
 #------------------------------------------------------------------------------
 #graba a un archivo los componentes de lista
@@ -124,17 +124,17 @@ EstimarGanancia  <- function( x )
 #------------------------------------------------------------------------------
 #Aqui empieza el programa
 
-setwd( "D:\\gdrive\\Austral2022R\\" )
+setwd( "~/austral/labo1/" )
 
 #cargo el dataset
-dataset  <- fread("./datasets/paquete_premium_202011.csv")   #donde entreno
+dataset  <- fread("~/austral/datasets/paquete_premium_202011.csv")   #donde entreno
 
 
 #creo la carpeta donde va el experimento
 # HT  representa  Hiperparameter Tuning
-dir.create( "./labo/exp/",  showWarnings = FALSE ) 
-dir.create( "./labo/exp/HT3220/", showWarnings = FALSE )
-setwd("D:\\gdrive\\Austral2022R\\labo\\exp\\HT3320\\")   #Establezco el Working Directory DEL EXPERIMENTO
+dir.create( "~/austral/labo1/exp/",  showWarnings = FALSE ) 
+dir.create( "~/austral/labo1/exp/HT3320/", showWarnings = FALSE )
+setwd("~/austral/labo1/exp/HT3320/")   #Establezco el Working Directory DEL EXPERIMENTO
 
 
 archivo_log  <- "HT332.txt"
