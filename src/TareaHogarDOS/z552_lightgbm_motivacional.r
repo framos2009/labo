@@ -18,13 +18,13 @@ require("data.table")
 require("lightgbm")
 
 
-ksemilla  <- 102191  #poner aqui la PRIMERA de sus cinco semillas
+ksemilla  <- 200177  #poner aqui la PRIMERA de sus cinco semillas
 
 #Aqui se debe poner la carpeta de la computadora local
-setwd("D:\\gdrive\\Austral2022R\\")   #Establezco el Working Directory
+setwd("~/austral/labo1/")   #Establezco el Working Directory
 
 #cargo el dataset donde voy a entrenar
-dataset  <- fread("./datasets/paquete_premium_202011.csv", stringsAsFactors= TRUE)
+dataset  <- fread("~/austral/datasets/paquete_premium_202011.csv", stringsAsFactors= TRUE)
 
 
 #paso la clase a binaria que tome valores {0,1}  enteros
@@ -56,7 +56,7 @@ modelo  <- lgb.train( data= dtrain,
                     )
 
 #aplico el modelo a los datos sin clase
-dapply  <- fread("./datasets/paquete_premium_202101.csv")
+dapply  <- fread("~/austral/datasets/paquete_premium_202101.csv")
 
 #aplico el modelo a los datos nuevos
 prediccion  <- predict( modelo, 
@@ -70,9 +70,9 @@ entrega  <- as.data.table( list( "numero_de_cliente"= dapply[  , numero_de_clien
 
 #guardo el resultado
 #creo las carpetas
-dir.create( "./labo/exp/",  showWarnings = FALSE ) 
-dir.create( "./labo/exp/KA5520/", showWarnings = FALSE )
-setwd( "./labo/exp/KA5520/" )
+dir.create( "~/austral/labo1/exp/",  showWarnings = FALSE ) 
+dir.create( "~/austral/labo1/exp/KA5520/", showWarnings = FALSE )
+setwd( "~/austral/labo1/exp/KA5520/" )
 
 archivo_salida  <- "KA_552_001.csv"
 

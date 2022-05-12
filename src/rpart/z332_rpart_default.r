@@ -154,9 +154,9 @@ if( file.exists(archivo_log) )
 #La llamada con los parametros por default
 
 x  <- list(  cp=          0.01,
-             minsplit=   20,
-             minbucket=   6,
-             maxdepth=   30
+             minsplit=   6262,
+             minbucket=   893,
+             maxdepth=   7
            )
 
 EstimarGanancia( x )
