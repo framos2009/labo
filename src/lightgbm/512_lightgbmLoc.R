@@ -1,11 +1,11 @@
-# XGBoost  sabor HISTOGRAMA
+# LightGBM  cambiando algunos de los parametros
 
 #limpio la memoria
 rm( list=ls() )  #remove all objects
 gc()             #garbage collection
 
 require("data.table")
-require("xgboost")
+require("lightgbm")
 
 #Aqui se debe poner la carpeta de la computadora local
 setwd("C:/Users/Fernando Ramos/Documents/Austral/LI1/labo/")   #Establezco el Working Directory
@@ -21,21 +21,16 @@ dataset[ , clase01 := ifelse( clase_ternaria=="BAJA+2", 1L, 0L) ]
 campos_buenos  <- setdiff( colnames(dataset), c("clase_ternaria","clase01") )
 
 
-#dejo los datos en el formato que necesita XGBoost
-dtrain  <- xgb.DMatrix( data= data.matrix(  dataset[ , campos_buenos, with=FALSE]),
+#dejo los datos en el formato que necesita LightGBM
+dtrain  <- lgb.Dataset( data= data.matrix(  dataset[ , campos_buenos, with=FALSE]),
                         label= dataset$clase01 )
 
 #genero el modelo con los parametros por default
-modelo  <- xgb.train( data= dtrain,
-                      param= list( objective=       "binary:logistic",
-                                   tree_method=     "hist",
-                                   grow_policy=     "lossguide",
-                                   max_leaves=          20,
-                                   min_child_weight=    1,
-                                   eta=                 0.3,
-                                   colsample_bytree=    1.0
-                                   ),
-                      nrounds= 178
+modelo  <- lgb.train( data= dtrain,
+                      param= list( objective=        "binary",
+                                   num_iterations=     519,  #40
+                                   num_leaves=         70,  #64
+                                   min_data_in_leaf= 3729 ) #3000
                     )
 
 #aplico el modelo a los datos sin clase
@@ -51,10 +46,20 @@ entrega  <- as.data.table( list( "numero_de_cliente"= dapply[  , numero_de_clien
                                  "Predicted"= prediccion > 1/60)  ) #genero la salida
 
 dir.create( "./exp/",  showWarnings = FALSE ) 
-dir.create( "./exp/KA5710/", showWarnings = FALSE )
-archivo_salida  <- "./exp/KA5710/KA_571_001.csv"
+dir.create( "./exp/KA2512/", showWarnings = FALSE )
+archivo_salida  <- "./exp/KA2512/KA_512_002.csv"
 
 #genero el archivo para Kaggle
 fwrite( entrega, 
         file= archivo_salida, 
         sep= "," )
+
+
+#ahora imprimo la importancia de variables
+tb_importancia  <-  as.data.table( lgb.importance(modelo) ) 
+archivo_importancia  <- "./exp/KA2512/512_importancia_001.txt"
+
+fwrite( tb_importancia, 
+        file= archivo_importancia, 
+        sep= "\t" )
+

@@ -24,20 +24,20 @@ param:
   acumulavars: FALSE   #a lo nuevo lo va aplicando
 
   tendenciaYmuchomas: 
-    correr: FALSE #Great power comes with great responsability
+    correr: TRUE #Great power comes with great responsability
     ventana: 6
-    tendencia: FALSE
+    tendencia: TRUE
     minimo:    FALSE
     maximo:    FALSE
-    promedio:  FALSE
+    promedio:  TRUE
     ratioavg:  FALSE
     ratiomax:  FALSE
 
 
   #lags y sus deltas , 6 posiciones
-  lag:   [ TRUE, FALSE, FALSE, FALSE, FALSE, FALSE ]
-  delta: [ TRUE, FALSE, FALSE, FALSE, FALSE, FALSE ]
-  canaritosratio: [ 0, 0, 0, 0, 0, 0 ]
+  lag:   [ TRUE, TRUE, FALSE, FALSE, FALSE, FALSE ]
+  delta: [ TRUE, TRUE, FALSE, FALSE, FALSE, FALSE ]
+  canaritosratio: [ 0.3, 0.1, 0, 0, 0, 0 ]
 
   tony:  FALSE
 
