@@ -30,7 +30,7 @@ param:
     minimo:    FALSE
     maximo:    FALSE
     promedio:  TRUE
-    ratioavg:  FALSE
+    ratioavg:  TRUE
     ratiomax:  FALSE
 
 
