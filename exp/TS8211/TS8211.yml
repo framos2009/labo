@@ -10,11 +10,11 @@ experiment:
   script: "src/completo/z921_TS_generico.r"
   restart: FALSE
   name: "exp"
-  requires: [ "FE8120" ]
+  requires: [ "FE8121" ]
 
 
 param:
-  semilla: 102191
+  semilla: 102191 #102191, 200177, 410551, 552581, 892237
 
   #donde aplico el modelo final, los datos sin clase
   future:
@@ -56,9 +56,9 @@ param:
   train_final:
     periodos: [ ]
     rango:
-      desde:  202001
+      desde:  201912
       hasta:  202011
-    excluir: [ ]
+    excluir: [ 202006 ]
     undersampling: [  ]
     
 
