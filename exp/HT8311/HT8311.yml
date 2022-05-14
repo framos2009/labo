@@ -29,15 +29,15 @@ param:
  #los parametros que son un solo valor  NO van a la B.O. y se pasan fijos
   lightgbm:
 
-    learning_rate:      [ 0.01, 0.07]
-    feature_fraction:   [ 0.1, 0.8 ]
-    num_leaves:         [ 16, 1024, "integer" ]
-    min_data_in_leaf:   [  0, 8000, "integer" ]
+    learning_rate:      [ 0.01, 0.06]
+    feature_fraction:   [ 0.1, 0.7 ]
+    num_leaves:         [ 30, 1000, "integer" ]
+    min_data_in_leaf:   [  1500, 8000, "integer" ]
 
     lambda_l1:  [ 0, 5, "integer" ]                    # [ 0  ,  10]
     lambda_l2:  [ 0, 50, "integer" ]                    # [ 0  , 200]
     min_gain_to_split: [ 0, 3, "integer" ]             # [ 0  ,  20]
-    bagging_fraction: 1.0            # [ 0.2,   1.0 ]
+    bagging_fraction: [ 0.2, 1.0 ]            # [ 0.2,   1.0 ]
 
     pos_bagging_fraction: 1.0        # dejarlo fijo
     neg_bagging_fraction: 1.0        # [ 0.1,   1.0 ]
@@ -66,7 +66,7 @@ param:
 
   #Optimizacion Bayesiana
   BO:
-    iterations: 200             #cantidad de iteraciones
+    iterations: 100             #cantidad de iteraciones
 
     noisy: TRUE
     minimize: FALSE
