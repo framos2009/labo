@@ -45,7 +45,7 @@ param:
     max_depth:  -1
     max_bin:     31
     
-    seed: 999983
+    seed: 410551
     extra_trees: FALSE
 
     drop_rate: 0.1
